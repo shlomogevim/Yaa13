@@ -1,35 +1,38 @@
 package com.example.yaa13
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_animation_screen.*
-import kotlin.properties.Delegates
 
 
 class AnimationScreen : AppCompatActivity() {
     companion object {
-        const val MANNL = "manl"
-        const val GODDL = "godl"
+        const val COUNTER = "counter"
+        const val SPEAKER = "speaker"
     }
 
+    private lateinit var orderList: ArrayList<String>
     private lateinit var godList: ArrayList<String>
     private lateinit var manList: ArrayList<String>
+
+    private lateinit var speakList: ArrayList<Speaker>
+
     private var manMode = true
-    private var sevev = 0
-    private var counterSituation = 0
+    private var counterStep = 0
+    private var stringStep = ""
 
-
-    lateinit var animationInAction :AnimationAction
-
+    lateinit var animationInAction: AnimationAction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animation_screen)
-        manList = intent.getStringArrayListExtra(MANNL)
-        godList = intent.getStringArrayListExtra(GODDL)
-        animationInAction=AnimationAction(this,mainLayout)
+
+        speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
+        counterStep=intent.getIntExtra(COUNTER,0)
+        if (counterStep<0) counterStep=0
+
+        animationInAction = AnimationAction(this, mainLayout)
         generalOperation()
         goddy.setOnClickListener {
             if (!manMode) {
@@ -54,65 +57,76 @@ class AnimationScreen : AppCompatActivity() {
 
     }
 
+
     private fun generalOperation() {
+        counterStep++
 
-        //  manMode = false
-        // sevev = 6
+        manMode = counterStep % 2 != 0
 
-        counterSituation++
         updateTitleSituation()
 
-        val speaking: String
+        val speaker = speakList[counterStep]
         if (manMode) {
-            //Its man position
-            speaking = manList[sevev]
-            operateMan(speaking)
-            manMode = false
+            operateMan(speaker)
         } else {
-            // lts God position
-            speaking = godList[sevev]
-            operateGoddy(speaking)
-            manMode = true
-            sevev++
-
+            operateGoddy(speaker)
         }
+        manMode=!manMode
     }
 
     private fun updateTitleSituation() {
-        title_situation.text = "madMode=$manMode round=$sevev"
-        counter_situation.text = "counter=$counterSituation"
+        title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
+        counter_situation.text = "counter=$counterStep"
     }
 
-    private fun operateGoddy(st: String) {
+    private fun operateGoddy(speaker: Speaker) {
+        val st = speaker.taking
         val arr = st.split("\n")
         val size = arr.size
-        //  val animationInAction = AnimationAction(mainLayout)
-        //initGod(size)
+
         when (size) {
-            1 -> animationInAction.godTranslaion11(arr, counterSituation)
-            2 -> animationInAction.godTranslation20(arr, counterSituation)
-            3 -> animationInAction.godTranslaion30(arr, counterSituation)
-            4 -> animationInAction.godTranslaion40(arr, counterSituation)
-            5 -> animationInAction.godTranslaion50(arr, counterSituation)
-            6 -> animationInAction.godTranslaion60(arr, counterSituation)
+            1 -> animationInAction.godTranslaion11A(speaker, counterStep)
+            2 -> animationInAction.godTranslation20(arr, counterStep)
+            3 -> animationInAction.godTranslaion30(arr, counterStep)
+            4 -> animationInAction.godTranslaion40(arr, counterStep)
+            5 -> animationInAction.godTranslaion50(arr, counterStep)
+            6 -> animationInAction.godTranslaion60(arr, counterStep)
         }
     }
 
+    private fun operateMan(speaker: Speaker) {
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val size = arr.size
 
+
+        when (size) {
+            1 -> animationInAction.manTranslation10(arr, counterStep)
+            2 -> animationInAction.manTranslation20A(speaker, counterStep)
+            3 -> animationInAction.manTranslaion30(arr, counterStep)
+            4 -> animationInAction.manTranslaion40(arr, counterStep)
+            5 -> animationInAction.manTranslaion50(arr, counterStep)
+        }
+    }
 
     private fun operateMan(st: String) {
         val arr = st.split("\n")
         val size = arr.size
-        //  val animationInAction = AnimationAction(mainLayout)
-        // initMan(size)
+
+        stringStep = orderList[counterStep]
+        val arr1 = stringStep.split("#")
+
         when (size) {
-            1 -> animationInAction.manTranslation10(arr, counterSituation)
-            2 -> animationInAction.manTranslation20(arr, counterSituation)
-            3 -> animationInAction.manTranslaion30(arr, counterSituation)
-            4 -> animationInAction.manTranslaion40(arr, counterSituation)
-            5 -> animationInAction.manTranslaion50(arr, counterSituation)
+            1 -> animationInAction.manTranslation10(arr, counterStep)
+            //2 -> animationInAction.manTranslation20(arr, counterStep)
+            2 -> animationInAction.manTranslation2A(arr, stringStep, counterStep)
+            3 -> animationInAction.manTranslaion30(arr, counterStep)
+            4 -> animationInAction.manTranslaion40(arr, counterStep)
+            5 -> animationInAction.manTranslaion50(arr, counterStep)
         }
     }
+
+
 }
 
 

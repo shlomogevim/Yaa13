@@ -33,6 +33,70 @@ class AnimationAction(context: Context, val view: View) {
     val danaFont = Typeface.createFromAsset(context.assets, "fonts/dana.otf")
 
 
+    private fun styleTextView(tv: TextView, st: String, speaker: Speaker): TextView {
+
+        var textView = tv
+
+        with(speaker) {
+
+            textView.setBackgroundColor(parseColor(colorBack))
+            textView.setTextColor(parseColor(colorText))
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeText)
+            when (styleText) {
+                0 -> textView.typeface = Typeface.DEFAULT
+                1 -> textView.typeface = ankaFont
+            }
+            textView.setPadding(paddingLeft, paddingTop, paddingRight, paddingButton)
+        }
+        textView.text = st
+
+        return textView
+    }
+
+    fun manTranslation20A(speaker: Speaker, counter: Int) {
+        initAllManTextview()
+        var st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man1, arr[1], speaker)
+        val textView11 = styleTextView(man2, arr[0], speaker)
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+            .translationX(-wi / 2, 0f)
+            .translationY(-hi, 0f)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .translationX(wi / 2, 0f)
+            .translationY(-hi, 0f)
+            .duration(2000)
+            .start()
+
+    }
+
+    fun godTranslaion11A(speaker: Speaker, counter: Int) {
+        initAllGogTextview()
+
+
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god1A, arr[0], speaker)
+
+
+        ViewAnimator
+            .animate(textView10)
+            .translationX(-wi / 2, 0f)
+            .translationY(hi, 0f)
+            .scale(0f, 2f)
+            .andAnimate(textView11)
+            .translationX(wi / 2, 0f)
+            .translationY(hi, 0f)
+            .scale(0f, 2f)
+            .duration(2000)
+            .start()
+    }
+
+
     private fun styleGod(tv: TextView, st: String, counter: Int): TextView {
         var textView = tv
         var colorText = Color.WHITE
@@ -40,7 +104,7 @@ class AnimationAction(context: Context, val view: View) {
         var colorBack = Color.BLACK
         var sizeText = 14f
 
-        textView.typeface= Typeface.DEFAULT
+        textView.typeface = Typeface.DEFAULT
 
         when (counter) {
             2 -> {
@@ -71,11 +135,41 @@ class AnimationAction(context: Context, val view: View) {
         var colorBack = Color.BLACK
         var sizeText = 20f
 
-        textView.typeface= Typeface.DEFAULT
+        textView.typeface = Typeface.DEFAULT
 
         when (counter) {
             1 -> textView.typeface = danaFont
         }
+
+        textView.setBackgroundColor(colorBack)
+        textView.setTextColor(colorText)
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeText)
+        textView.setTypeface(textView.typeface, styleText)
+        textView.setPadding(30, 0, 30, 0)
+
+
+        textView.text = st
+        // textView.gravity = Gravity.HORIZONTAL_GRAVITY_MASK
+
+        return textView
+    }
+
+    private fun styleMan1(tv: TextView, st: String, styleString: String): TextView {
+
+        var arr = styleString.split("#")
+
+
+        var textView = tv
+        var colorText = Color.WHITE
+        var styleText = Typeface.NORMAL
+        var colorBack = Color.BLACK
+        var sizeText = 20f
+
+        textView.typeface = Typeface.DEFAULT
+
+        /* when (counter) {
+             1 -> textView.typeface = danaFont
+         }*/
 
         textView.setBackgroundColor(colorBack)
         textView.setTextColor(colorText)
@@ -119,6 +213,26 @@ class AnimationAction(context: Context, val view: View) {
             .duration(2000)
             .start()
     }
+
+    fun manTranslation2A(arr: List<String>, styleString: String, counter: Int) {
+        initAllManTextview()
+        /* val textView10 = styleMan(man1, arr[1], counter)
+         val textView11 = styleMan(man2, arr[0], counter)*/
+        val textView10 = styleMan1(man1, arr[1], styleString)
+        val textView11 = styleMan1(man2, arr[0], styleString)
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+            .translationX(-wi / 2, 0f)
+            .translationY(-hi, 0f)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .translationX(wi / 2, 0f)
+            .translationY(-hi, 0f)
+            .duration(2000)
+            .start()
+    }
+
 
     fun manTranslaion30(arr: List<String>, counter: Int) {
         initAllManTextview()

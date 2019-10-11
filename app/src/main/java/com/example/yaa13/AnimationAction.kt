@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_animation_screen.view.*
 
 
 class AnimationAction(context: Context, val view: View) {
+
     var man1: TextView = view.manSpeaking1
     var man2: TextView = view.manSpeaking2
     var man3: TextView = view.manSpeaking3
@@ -31,6 +32,9 @@ class AnimationAction(context: Context, val view: View) {
     var hi: Float = Resources.getSystem().displayMetrics.heightPixels.toFloat()
     val ankaFont = Typeface.createFromAsset(context.assets, "fonts/anka.ttf")
     val danaFont = Typeface.createFromAsset(context.assets, "fonts/dana.otf")
+    val shulikFont = Typeface.createFromAsset(context.assets, "fonts/shmulik.ttf")
+    val stamFont = Typeface.createFromAsset(context.assets, "fonts/stam.ttf")
+    val drugFont = Typeface.createFromAsset(context.assets, "fonts/drug.ttf")
 
 
     private fun styleTextView(tv: TextView, st: String, speaker: Speaker): TextView {
@@ -45,6 +49,10 @@ class AnimationAction(context: Context, val view: View) {
             when (styleText) {
                 0 -> textView.typeface = Typeface.DEFAULT
                 1 -> textView.typeface = ankaFont
+                2 -> textView.typeface = danaFont
+                3 -> textView.typeface = shulikFont
+                4 -> textView.typeface = stamFont
+                5 -> textView.typeface = drugFont
             }
             textView.setPadding(paddingLeft, paddingTop, paddingRight, paddingButton)
         }
@@ -52,19 +60,32 @@ class AnimationAction(context: Context, val view: View) {
 
         return textView
     }
+    fun manTranslation10(speaker: Speaker) {
+        initAllManTextview()
+        var st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man1, arr[0], speaker)
+        ViewAnimator
+            .animate(textView10)
+           // .translationX(-wi / 2, 0f)
+           // .translationY(-hi, 0f)
+            .scale(0f, 1f)
+            .duration(2000)
+            .start()
+    }
 
-    fun manTranslation20A(speaker: Speaker, counter: Int) {
+    fun manTranslation20A(speaker: Speaker) {
         initAllManTextview()
         var st = speaker.taking
         val arr = st.split("\n")
         val textView10 = styleTextView(man1, arr[1], speaker)
         val textView11 = styleTextView(man2, arr[0], speaker)
         ViewAnimator
-            .animate(textView10)
+            .animate(textView11)
             .scale(0f, 1f)
             .translationX(-wi / 2, 0f)
             .translationY(-hi, 0f)
-            .thenAnimate(textView11)
+            .thenAnimate(textView10)
             .scale(0f, 1f)
             .translationX(wi / 2, 0f)
             .translationY(-hi, 0f)
@@ -73,16 +94,61 @@ class AnimationAction(context: Context, val view: View) {
 
     }
 
-    fun godTranslaion11A(speaker: Speaker, counter: Int) {
+    fun manTranslaion30(speaker: Speaker) {
+        initAllManTextview()
+        var st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man1, arr[2], speaker)
+        val textView11 = styleTextView(man2, arr[1], speaker)
+        val textView12 = styleTextView(man3, arr[0], speaker)
+        var dur = 1000L
+
+        ViewAnimator
+            .animate(textView12)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView10)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+
+    fun manTranslaion40(speaker: Speaker) {
+        initAllManTextview()
+        var st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man1, arr[3], speaker)
+        val textView11 = styleTextView(man2, arr[2], speaker)
+        val textView12 = styleTextView(man3, arr[1], speaker)
+        val textView13 = styleTextView(man4, arr[0], speaker)
+        var dur = 1000L
+        ViewAnimator
+            .animate(textView13)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView12)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView10)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView13)
+            .swing()
+            .start()
+    }
+
+    fun godTranslaion11A(speaker: Speaker) {
         initAllGogTextview()
-
-
         val st = speaker.taking
         val arr = st.split("\n")
         val textView10 = styleTextView(god1, arr[0], speaker)
         val textView11 = styleTextView(god1A, arr[0], speaker)
-
-
         ViewAnimator
             .animate(textView10)
             .translationX(-wi / 2, 0f)
@@ -95,6 +161,160 @@ class AnimationAction(context: Context, val view: View) {
             .duration(2000)
             .start()
     }
+    fun godTranslation20(speaker: Speaker) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+             .translationX(-wi / 2, 0f)
+            // .translationY(hi, 0f)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .translationX(wi / 2, 0f)
+           // .translationY(hi, 0f)
+            .duration(2000)
+            .start()
+    }
+
+    fun godTranslaion40(speaker: Speaker) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val textView13 = styleTextView(god4, arr[3], speaker)
+        var dur = 1000L
+
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView12)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView13)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+
+    fun godTranslaion40A(speaker: Speaker) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val textView13 = styleTextView(god4, arr[3], speaker)
+        var dur = 1000L
+
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView12)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView13)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView13)
+            .textColor(parseColor("#3e64ff"), parseColor("#ff0000"))
+            .duration(dur)
+            .start()
+    }
+
+
+    fun godTranslaion60(speaker: Speaker) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val textView13 = styleTextView(god4, arr[3], speaker)
+        val textView14 = styleTextView(god5, arr[4], speaker)
+        val textView15 = styleTextView(god6, arr[5], speaker)
+        var dur = 1000L
+
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView12)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView13)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView14)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView15)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+    fun godTranslaion60A(speaker: Speaker) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val textView13 = styleTextView(god4, arr[3], speaker)
+        val textView14 = styleTextView(god5, arr[4], speaker)
+        val textView15 = styleTextView(god6, arr[5], speaker)
+        var dur = 700L
+
+        ViewAnimator
+            .animate(textView10)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView11)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView12)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView13)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView14)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView15)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView15)
+            .duration(7000)
+            .thenAnimate(textView15)
+            .textColor(parseColor("#3e64ff"),parseColor("#ff6f5e"))
+            .flipHorizontal()
+            .duration(2000)
+            .start()
+    }
+
+
+
+
+
 
 
     private fun styleGod(tv: TextView, st: String, counter: Int): TextView {
@@ -154,9 +374,9 @@ class AnimationAction(context: Context, val view: View) {
         return textView
     }
 
-    private fun styleMan1(tv: TextView, st: String, styleString: String): TextView {
+    private fun styleMan1(tv: TextView, st: String): TextView {
 
-        var arr = styleString.split("#")
+        // var arr = styleString.split("#")
 
 
         var textView = tv
@@ -185,7 +405,7 @@ class AnimationAction(context: Context, val view: View) {
     }
 
 
-    fun manTranslation10(arr: List<String>, counter: Int) {
+    fun manTranslation10A(arr: List<String>, counter: Int) {
         initAllManTextview()
         val textView10 = styleMan(man1, arr[0], counter)
         ViewAnimator
@@ -196,6 +416,7 @@ class AnimationAction(context: Context, val view: View) {
             .duration(2000)
             .start()
     }
+
 
     fun manTranslation20(arr: List<String>, counter: Int) {
         initAllManTextview()
@@ -214,12 +435,12 @@ class AnimationAction(context: Context, val view: View) {
             .start()
     }
 
-    fun manTranslation2A(arr: List<String>, styleString: String, counter: Int) {
+    fun manTranslation2A(arr: List<String>) {
         initAllManTextview()
         /* val textView10 = styleMan(man1, arr[1], counter)
          val textView11 = styleMan(man2, arr[0], counter)*/
-        val textView10 = styleMan1(man1, arr[1], styleString)
-        val textView11 = styleMan1(man2, arr[0], styleString)
+        val textView10 = styleMan1(man1, arr[1])
+        val textView11 = styleMan1(man2, arr[0])
         ViewAnimator
             .animate(textView10)
             .scale(0f, 1f)
@@ -234,27 +455,27 @@ class AnimationAction(context: Context, val view: View) {
     }
 
 
-    fun manTranslaion30(arr: List<String>, counter: Int) {
-        initAllManTextview()
-        val textView10 = styleMan(man1, arr[2], counter)
-        val textView11 = styleMan(man2, arr[1], counter)
-        val textView12 = styleMan(man3, arr[0], counter)
-        var dur = 1000L
+    /* fun manTranslaion30(arr: List<String>, counter: Int) {
+         initAllManTextview()
+         val textView10 = styleMan(man1, arr[2], counter)
+         val textView11 = styleMan(man2, arr[1], counter)
+         val textView12 = styleMan(man3, arr[0], counter)
+         var dur = 1000L
 
-        ViewAnimator
-            .animate(textView12)
-            .scale(0f, 1f)
-            .duration(dur)
-            .thenAnimate(textView11)
-            .scale(0f, 1f)
-            .duration(dur)
-            .thenAnimate(textView10)
-            .scale(0f, 1f)
-            .duration(dur)
-            .start()
-    }
-
-    fun manTranslaion40(arr: List<String>, counter: Int) {
+         ViewAnimator
+             .animate(textView12)
+             .scale(0f, 1f)
+             .duration(dur)
+             .thenAnimate(textView11)
+             .scale(0f, 1f)
+             .duration(dur)
+             .thenAnimate(textView10)
+             .scale(0f, 1f)
+             .duration(dur)
+             .start()
+     }
+ */
+    /*fun manTranslaion40(arr: List<String>, counter: Int) {
         initAllManTextview()
         val textView10 = styleMan(man1, arr[3], counter)
         val textView11 = styleMan(man2, arr[2], counter)
@@ -276,7 +497,7 @@ class AnimationAction(context: Context, val view: View) {
             .scale(0f, 1f)
             .duration(dur)
             .start()
-    }
+    }*/
 
     fun manTranslaion50(arr: List<String>, counter: Int) {
         initAllManTextview()
@@ -352,7 +573,7 @@ class AnimationAction(context: Context, val view: View) {
             .start()
     }
 
-    fun godTranslation20(arr: List<String>, counter: Int) {
+    /*fun godTranslation20(arr: List<String>, counter: Int) {
         initAllGogTextview()
         val textView10 = styleGod(god1, arr[0], counter)
         val textView11 = styleGod(god2, arr[1], counter)
@@ -368,7 +589,7 @@ class AnimationAction(context: Context, val view: View) {
             .translationY(-hi, 0f)
             .duration(2000)
             .start()
-    }
+    }*/
 
     fun godTranslaion30(arr: List<String>, counter: Int) {
         initAllGogTextview()
@@ -393,7 +614,7 @@ class AnimationAction(context: Context, val view: View) {
             .start()
     }
 
-    fun godTranslaion40(arr: List<String>, counter: Int) {
+    /*fun godTranslaion40(arr: List<String>, counter: Int) {
         initAllGogTextview()
         val textView10 = styleGod(god1, arr[0], counter)
         val textView11 = styleGod(god2, arr[1], counter)
@@ -415,7 +636,7 @@ class AnimationAction(context: Context, val view: View) {
             .scale(0f, 1f)
             .duration(dur)
             .start()
-    }
+    }*/
 
     fun godTranslaion50(arr: List<String>, counter: Int) {
         initAllGogTextview()
@@ -448,7 +669,7 @@ class AnimationAction(context: Context, val view: View) {
             .start()
     }
 
-    fun godTranslaion60(arr: List<String>, counter: Int) {
+   /* fun godTranslaion60(arr: List<String>, counter: Int) {
         initAllGogTextview()
 
         val textView10 = styleGod(god1, arr[0], counter)
@@ -479,7 +700,7 @@ class AnimationAction(context: Context, val view: View) {
             .scale(0f, 1f)
             .duration(dur)
             .start()
-    }
+    }*/
 
     fun initAllGogTextview() {
         ViewAnimator

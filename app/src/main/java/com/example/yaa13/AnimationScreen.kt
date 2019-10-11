@@ -29,8 +29,8 @@ class AnimationScreen : AppCompatActivity() {
         setContentView(R.layout.activity_animation_screen)
 
         speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
-        counterStep=intent.getIntExtra(COUNTER,0)
-        if (counterStep<0) counterStep=0
+        counterStep = intent.getIntExtra(COUNTER, 0)
+        if (counterStep < 0) counterStep = 0
 
         animationInAction = AnimationAction(this, mainLayout)
         generalOperation()
@@ -71,7 +71,7 @@ class AnimationScreen : AppCompatActivity() {
         } else {
             operateGoddy(speaker)
         }
-        manMode=!manMode
+        manMode = !manMode
     }
 
     private fun updateTitleSituation() {
@@ -85,46 +85,34 @@ class AnimationScreen : AppCompatActivity() {
         val size = arr.size
 
         when (size) {
-            1 -> animationInAction.godTranslaion11A(speaker, counterStep)
-            2 -> animationInAction.godTranslation20(arr, counterStep)
+            1 -> animationInAction.godTranslaion11A(speaker)
+            2 -> animationInAction.godTranslation20(speaker)
             3 -> animationInAction.godTranslaion30(arr, counterStep)
-            4 -> animationInAction.godTranslaion40(arr, counterStep)
-            5 -> animationInAction.godTranslaion50(arr, counterStep)
-            6 -> animationInAction.godTranslaion60(arr, counterStep)
-        }
+            4 -> when (counterStep) {
+                12->animationInAction.godTranslaion40A(speaker)
+                else -> animationInAction.godTranslaion40(speaker)
+
+
+            }
+        5 -> animationInAction.godTranslaion50(arr, counterStep)
+        6 -> animationInAction.godTranslaion60A(speaker)
     }
+}
 
-    private fun operateMan(speaker: Speaker) {
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val size = arr.size
+private fun operateMan(speaker: Speaker) {
+    val st = speaker.taking
+    val arr = st.split("\n")
+    val size = arr.size
 
 
-        when (size) {
-            1 -> animationInAction.manTranslation10(arr, counterStep)
-            2 -> animationInAction.manTranslation20A(speaker, counterStep)
-            3 -> animationInAction.manTranslaion30(arr, counterStep)
-            4 -> animationInAction.manTranslaion40(arr, counterStep)
-            5 -> animationInAction.manTranslaion50(arr, counterStep)
-        }
+    when (size) {
+        1 -> animationInAction.manTranslation10(speaker)
+        2 -> animationInAction.manTranslation20A(speaker)
+        3 -> animationInAction.manTranslaion30(speaker)
+        4 -> animationInAction.manTranslaion40(speaker)
+        5 -> animationInAction.manTranslaion50(arr, counterStep)
     }
-
-    private fun operateMan(st: String) {
-        val arr = st.split("\n")
-        val size = arr.size
-
-        stringStep = orderList[counterStep]
-        val arr1 = stringStep.split("#")
-
-        when (size) {
-            1 -> animationInAction.manTranslation10(arr, counterStep)
-            //2 -> animationInAction.manTranslation20(arr, counterStep)
-            2 -> animationInAction.manTranslation2A(arr, stringStep, counterStep)
-            3 -> animationInAction.manTranslaion30(arr, counterStep)
-            4 -> animationInAction.manTranslaion40(arr, counterStep)
-            5 -> animationInAction.manTranslaion50(arr, counterStep)
-        }
-    }
+}
 
 
 }

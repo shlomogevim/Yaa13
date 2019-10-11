@@ -1,7 +1,6 @@
 package com.example.yaa13
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yaa13.AnimationScreen.Companion.COUNTER
@@ -14,8 +13,7 @@ class MainActivity : AppCompatActivity() {
     val GOD = "-אלוהים-"
 
     lateinit var speakerList: ArrayList<Speaker>
-    private var counter=0
-
+    private var counter = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +27,72 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateListSpeaker() {
 
-        counter=5
+        counter = 14
 
         for (ind in 0 until speakerList.size)
 
 
-        when (ind) {
-            2, 4 -> speakerList[ind] = updateSpeaker2(speakerList[ind])
-        }
+            when (ind) {
+                2, 4, 6,8 -> speakerList[ind] = updateSpeaker2(speakerList[ind])
+                5,8 -> speakerList[ind] = updateSpeaker5(speakerList[ind])
+                7 -> speakerList[ind] = updateSpeaker7(speakerList[ind])
+                9 -> speakerList[ind] = updateSpeaker9(speakerList[ind])
+                10 -> speakerList[ind] = updateSpeaker10(speakerList[ind])
+                12 -> speakerList[ind] = updateSpeaker12(speakerList[ind])
+                14 -> speakerList[ind] = updateSpeaker14(speakerList[ind])
+            }
+    }
+    private fun updateSpeaker14(speaker: Speaker): Speaker {
+        speaker.colorText = "#bdbdbd"
+        speaker.colorBack = "#f54291"
+        speaker.sizeText = 16f
+        speaker.styleText = 1
+        speaker.paddingTop = 30
+        speaker.paddingButton = 5
+        return speaker
     }
 
+    private fun updateSpeaker12(speaker: Speaker): Speaker {
+        speaker.colorText = "#3e64ff"
+        // speaker.colorBack = "#ecfcff"
+        speaker.colorBack = "#ffffff"
+        speaker.sizeText = 35f
+        speaker.styleText = 1
+        speaker.paddingTop = 10
+        // speaker.paddingButton = 30
+        return speaker
+    }
+    private fun updateSpeaker10(speaker: Speaker): Speaker {
+        speaker.colorText = "#3e64ff"
+       // speaker.colorBack = "#ecfcff"
+        speaker.colorBack = "#ffffff"
+        speaker.sizeText = 21f
+        speaker.styleText = 1
+        speaker.paddingTop = 10
+        speaker.paddingRight = 5
+        speaker.paddingLeft = 5
+        // speaker.paddingButton = 30
+        return speaker
+    }
+    private fun updateSpeaker9(speaker: Speaker): Speaker {
+         speaker.colorText = "#3e64ff"
+          speaker.colorBack = "#ecfcff"
+        speaker.sizeText = 21f
+        speaker.styleText = 1
+         speaker.paddingTop = 10
+        // speaker.paddingButton = 30
+        return speaker
+    }
+
+    private fun updateSpeaker7(speaker: Speaker): Speaker {
+       // speaker.colorText = "#bdbdbd"
+      //  speaker.colorBack = "#44000D"
+        speaker.sizeText = 32f
+        speaker.styleText = 3
+       // speaker.paddingTop = 50
+      //  speaker.paddingButton = 30
+        return speaker
+    }
     private fun updateSpeaker2(speaker: Speaker): Speaker {
         speaker.colorText = "#bdbdbd"
         speaker.colorBack = "#44000D"
@@ -49,13 +103,23 @@ class MainActivity : AppCompatActivity() {
         return speaker
     }
 
+    private fun updateSpeaker5(speaker: Speaker): Speaker {
+        //speaker.colorText = "#C70D3A"
+        //speaker.colorBack = "#40BFC1"
+        speaker.sizeText = 22f
+        speaker.styleText = 0
+        //speaker.paddingTop = 0
+        // speaker.paddingButton = 0
+        return speaker
+    }
+
 
     private fun sendData() {
         val intent1 = Intent(this, AnimationScreen::class.java)
 
 
         intent1.putExtra(SPEAKER, speakerList)
-        intent1.putExtra(COUNTER,counter-1)
+        intent1.putExtra(COUNTER, counter - 1)
 
         startActivity(intent1)
     }

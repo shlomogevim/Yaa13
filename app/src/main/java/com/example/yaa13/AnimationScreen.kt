@@ -74,10 +74,6 @@ class AnimationScreen : AppCompatActivity() {
         manMode = !manMode
     }
 
-    private fun updateTitleSituation() {
-        title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
-        counter_situation.text = "counter=$counterStep"
-    }
 
     private fun operateGoddy(speaker: Speaker) {
         val st = speaker.taking
@@ -89,32 +85,35 @@ class AnimationScreen : AppCompatActivity() {
             2 -> animationInAction.godTranslation20(speaker)
             3 -> animationInAction.godTranslaion30(arr, counterStep)
             4 -> when (counterStep) {
-                12->animationInAction.godTranslaion40A(speaker)
+                12 -> animationInAction.godTranslaion40A(speaker)
                 else -> animationInAction.godTranslaion40(speaker)
 
 
             }
-        5 -> animationInAction.godTranslaion50(arr, counterStep)
-        6 -> animationInAction.godTranslaion60A(speaker)
+            5 -> animationInAction.godTranslaion50(arr, counterStep)
+            6 -> animationInAction.godTranslaion60A(speaker)
+        }
     }
-}
 
-private fun operateMan(speaker: Speaker) {
-    val st = speaker.taking
-    val arr = st.split("\n")
-    val size = arr.size
+    private fun operateMan(speaker: Speaker) {
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val size = arr.size
 
 
-    when (size) {
-        1 -> animationInAction.manTranslation10(speaker)
-        2 -> animationInAction.manTranslation20A(speaker)
-        3 -> animationInAction.manTranslaion30(speaker)
-        4 -> animationInAction.manTranslaion40(speaker)
-        5 -> animationInAction.manTranslaion50(arr, counterStep)
+        when (size) {
+            1 -> animationInAction.manTranslation10(speaker)
+            2 -> animationInAction.manTranslation20A(speaker)
+            3 -> animationInAction.manTranslaion30(speaker)
+            4 -> animationInAction.manTranslaion40(speaker)
+            5 -> animationInAction.manTranslaion50(arr, counterStep)
+        }
     }
-}
 
-
+    private fun updateTitleSituation() {
+        title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
+        counter_situation.text = "counter=$counterStep"
+    }
 }
 
 

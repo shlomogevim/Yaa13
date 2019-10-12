@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateListSpeaker() {
 
-        counter = 14
+        counter = 0
 
         for (ind in 0 until speakerList.size)
 

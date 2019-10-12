@@ -39,6 +39,174 @@ object Util {
     private fun ttScale(textView: TextView, dur: Long) {
         ViewAnimator.animate(textView).scale(0f, 1f).duration(dur).start()
     }
+    fun scale10(
+        textView1: TextView,
+        dur: Long
+    ) {
+        ttScale(textView1, dur)
+    }
+
+
+    fun scale11(
+        textView1: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .swing()
+            .start()
+    }
+    fun scale20(
+        textView1: TextView,
+        textView2: TextView,
+        dur: Long
+    ) {
+        ttScale(textView1, dur)
+        ttScale(textView2, dur)
+    }
+
+    fun scale21(
+        textView1: TextView,
+        textView2: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+    fun scale22(
+        textView1: TextView,
+        textView2: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView1)
+            .swing()
+            .start()
+    }
+    fun scale30(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        dur: Long
+    ) {
+        ttScale(textView1, dur)
+        ttScale(textView2, dur)
+        ttScale(textView3, dur)
+    }
+
+    fun scale31(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView3)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+    fun scale32(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView3)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView1)
+            .swing()
+            .start()
+    }
+
+    fun scale40(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        dur: Long
+    ) {
+        ttScale(textView1, dur)
+        ttScale(textView2, dur)
+        ttScale(textView3, dur)
+        ttScale(textView4, dur)
+    }
+
+    fun scale41(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView3)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView4)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+    fun scale42(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView3)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView4)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView1)
+            .swing()
+            .start()
+    }
+
 
     fun scale50(
         textView1: TextView,
@@ -116,6 +284,90 @@ object Util {
             .duration(dur)
             .start()
     }
+    fun scale60(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        textView5: TextView,
+        textView6: TextView,
+        dur: Long
+    ) {
+        ttScale(textView1, dur)
+        ttScale(textView2, dur)
+        ttScale(textView3, dur)
+        ttScale(textView4, dur)
+        ttScale(textView5, dur)
+        ttScale(textView6, dur)
+    }
 
+    fun scale61(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        textView5: TextView,
+        textView6: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView3)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView4)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView5)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView6)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+
+    fun scale62(
+        textView1: TextView,
+        textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        textView5: TextView,
+        textView6: TextView,
+        dur: Long
+    ) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView2)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView3)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView4)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView5)
+            .scale(0f, 1f)
+            .thenAnimate(textView6)
+            .scale(0f, 1f)
+            .onStop {
+                ViewAnimator
+                    .animate(textView6)
+                    .scale(1f, 0f, 1f)
+                    .repeatCount(1)
+                    .duration(1000)
+                    .start()
+            }
+            .duration(dur)
+            .start()
+    }
 
 }

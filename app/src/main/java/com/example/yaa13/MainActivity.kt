@@ -75,8 +75,8 @@ class MainActivity : AppCompatActivity() {
         return speaker
     }
     private fun updateSpeaker9(speaker: Speaker): Speaker {
-         speaker.colorText = "#3e64ff"
-          speaker.colorBack = "#ecfcff"
+        // speaker.colorText = "#3e64ff"
+         // speaker.colorBack = "#ecfcff"
         speaker.sizeText = 21f
         speaker.styleText = 1
          speaker.paddingTop = 10

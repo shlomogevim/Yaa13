@@ -65,15 +65,70 @@ class AnimationScreen : AppCompatActivity() {
 
         updateTitleSituation()
 
-        val speaker = speakList[counterStep]
-        if (manMode) {
-            operateMan(speaker)
-        } else {
-            operateGoddy(speaker)
-        }
+        operatAnimation()
+
+        //     val speaker = speakList[counterStep]
+//        if (manMode) {
+//            operateMan(speaker)
+//        } else {
+//            operateGoddy(speaker)
+//        }
+
+
         manMode = !manMode
     }
 
+    private fun operatAnimation() {
+
+//        counterStep = 13
+        var arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+        if (arr1.contains(counterStep)) {
+
+
+            val speaker = speakList[counterStep]
+            when (counterStep) {
+                1 -> animationInAction.manMove20(speaker)
+                2, 4, 6, 8 -> animationInAction.godMove11A(speaker)
+                3 -> animationInAction.manStatic50(2, speaker)
+                5 -> animationInAction.manStatic40(2, speaker)
+                7 -> animationInAction.manStatic20(0, speaker)
+                9 -> animationInAction.manStatic30(1, speaker)
+                10 -> animationInAction.godStatic60(0, speaker)
+                11 -> animationInAction.manStatic10(0, speaker)
+                12 -> animationInAction.godStatic40(0, speaker)
+            }
+
+        }else{
+            regularAnimation()
+        }
+    }
+
+    private fun regularAnimation() {
+        val speaker = speakList[counterStep]
+        val kind=speaker.whoSpeake
+        val st = speaker.taking
+        val arr = st.split("\n")
+        if (kind=="man"){
+            when (arr.size){
+                1->animationInAction.manStatic10(0,speaker)
+                2->animationInAction.manStatic20(0,speaker)
+                3->animationInAction.manStatic30(0,speaker)
+                4->animationInAction.manStatic40(0,speaker)
+                5->animationInAction.manStatic50(0,speaker)
+                6->animationInAction.manStatic60(0,speaker)
+            }
+        }else{
+            when (arr.size){
+                1->animationInAction.godStatic10(0,speaker)
+                2->animationInAction.godStatic20(0,speaker)
+                3->animationInAction.godStatic30(0,speaker)
+                4->animationInAction.godStatic40(0,speaker)
+                5->animationInAction.godStatic50(0,speaker)
+                6->animationInAction.godStatic60(0,speaker)
+            }
+        }
+
+    }
 
     private fun operateGoddy(speaker: Speaker) {
         val st = speaker.taking
